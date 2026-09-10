@@ -83,8 +83,14 @@
   thead th.num, td.num{ text-align:right; font-variant-numeric: tabular-nums; }
   thead th:hover{ color: #fff; }
   thead th.motioncol{ color:#e8b45a; }
-  tbody tr{ border-bottom: 1px solid var(--line); }
+  tbody tr{ border-bottom: 1px solid var(--line); cursor:pointer; }
   tbody tr:hover{ background: rgba(201,162,39,0.08); }
+  tbody tr.hl-1{ background: rgba(201,162,39,0.22); }
+  tbody tr.hl-2{ background: rgba(95,201,160,0.20); }
+  tbody tr.hl-3{ background: rgba(224,90,74,0.20); }
+  tbody tr.hl-1:hover{ background: rgba(201,162,39,0.30); }
+  tbody tr.hl-2:hover{ background: rgba(95,201,160,0.28); }
+  tbody tr.hl-3:hover{ background: rgba(224,90,74,0.28); }
   td{ padding: 6px 8px; }
   td.name{ color: var(--text); font-weight:500; }
   td.name-unmet{ color: #6b6459; font-weight:500; }
@@ -127,7 +133,7 @@
       <div class="sub" data-i18n="subtitle">ステータス・強化値から全武器のAR(攻撃力)を計算し、選択した攻撃モーションのダメージ・消費スタミナを比較します。</div>
       <div class="sub">
         <span data-i18n="feedback_pre">不具合・要望はこちらの動画のコメント欄まで:</span>
-        <a href="https://www.youtube.com/watch?v=HpHI55Lhnko" target="_blank" rel="noopener" data-i18n="feedback_link">YouTube動画</a>
+        <a href="https://youtu.be/WhxTPjEIfW0" target="_blank" rel="noopener" data-i18n="feedback_link">YouTube動画</a>
       </div>
     </div>
     <button id="lang-toggle" type="button" style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--gold);padding:6px 14px;border-radius:3px;cursor:pointer;font-size:12px;white-space:nowrap;">English</button>
@@ -484,6 +490,7 @@
     showDmgLevel:false, showPoise:false, showStamina:false, totalOnly:false,
     showMvBreakdown:true, showDmgBreakdown:true, physLump:false, thrustCounter:false, rockSword:false,
     sortCol:'dmg', sortDir:-1,
+    highlighted: [], // up to 3 row keys, FIFO
   };
 
   const MAX_ROWS = 300;
@@ -789,6 +796,19 @@
 
     shown.forEach(r=>{
       const tr = document.createElement('tr');
+      const rowKey = r.w.n + '|' + r.w.a;
+      const hlIdx = state.highlighted.indexOf(rowKey);
+      if (hlIdx !== -1) tr.classList.add('hl-' + (hlIdx+1));
+      tr.addEventListener('click', ()=>{
+        const idx = state.highlighted.indexOf(rowKey);
+        if (idx !== -1){
+          state.highlighted.splice(idx, 1);
+        } else {
+          state.highlighted.push(rowKey);
+          if (state.highlighted.length > 3) state.highlighted.shift();
+        }
+        render();
+      });
       visibleCols.forEach(c=>{
         const td = document.createElement('td');
         if (c.key==='name'){ td.className = r.meetsReq ? 'name' : 'name-unmet'; td.textContent=r.dispName; }
