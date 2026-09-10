@@ -121,72 +121,81 @@
 </head>
 <body>
 <div class="wrap">
-  <h1>ELDEN RING 武器比較ツール</h1>
-  <div class="sub">ステータス・強化値から全武器のAR(攻撃力)を計算し、選択した攻撃モーションのダメージ・消費スタミナを比較します。</div>
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px; flex-wrap:wrap;">
+    <div>
+      <h1 data-i18n="title">ELDEN RING 武器比較ツール</h1>
+      <div class="sub" data-i18n="subtitle">ステータス・強化値から全武器のAR(攻撃力)を計算し、選択した攻撃モーションのダメージ・消費スタミナを比較します。</div>
+      <div class="sub">
+        <span data-i18n="feedback_pre">不具合・要望はこちらの動画のコメント欄まで:</span>
+        <a href="https://www.youtube.com/watch?v=HpHI55Lhnko" target="_blank" rel="noopener" data-i18n="feedback_link">YouTube動画</a>
+      </div>
+    </div>
+    <button id="lang-toggle" type="button" style="background:var(--panel);border:1px solid var(--gold-dim);color:var(--gold);padding:6px 14px;border-radius:3px;cursor:pointer;font-size:12px;white-space:nowrap;">English</button>
+  </div>
 
   <div class="panels">
     <div class="panel">
-      <h2>ステータス / 強化値</h2>
+      <h2 data-i18n="panel_stats">ステータス / 強化値</h2>
       <div class="statrow">
-        <div class="field"><label>筋力</label><input type="number" id="in-str" min="1" max="99" value="10"></div>
-        <div class="field"><label>技量</label><input type="number" id="in-dex" min="1" max="99" value="10"></div>
-        <div class="field"><label>知力</label><input type="number" id="in-int" min="1" max="99" value="10"></div>
-        <div class="field"><label>信仰</label><input type="number" id="in-fai" min="1" max="99" value="10"></div>
-        <div class="field"><label>神秘</label><input type="number" id="in-arc" min="1" max="99" value="10"></div>
+        <div class="field"><label data-i18n="stat_str">筋力</label><input type="number" id="in-str" min="1" max="99" value="10"></div>
+        <div class="field"><label data-i18n="stat_dex">技量</label><input type="number" id="in-dex" min="1" max="99" value="10"></div>
+        <div class="field"><label data-i18n="stat_int">知力</label><input type="number" id="in-int" min="1" max="99" value="10"></div>
+        <div class="field"><label data-i18n="stat_fai">信仰</label><input type="number" id="in-fai" min="1" max="99" value="10"></div>
+        <div class="field"><label data-i18n="stat_arc">神秘</label><input type="number" id="in-arc" min="1" max="99" value="10"></div>
       </div>
       <div class="statrow">
         <div class="levelfield">
-          <label style="font-size:11px;color:var(--text-dim);">強化値</label>
+          <label data-i18n="level_main" style="font-size:11px;color:var(--text-dim);">強化値</label>
           <input type="range" id="in-level" min="0" max="25" value="25">
           <span class="levelval" id="level-val">+25</span>
         </div>
         <div class="levelfield">
-          <label style="font-size:11px;color:var(--text-dim);">強化値(派生なし武器・上限+10)</label>
+          <label data-i18n="level_unique" style="font-size:11px;color:var(--text-dim);">強化値(派生なし武器・上限+10)</label>
           <input type="range" id="in-level-unique" min="0" max="10" value="10">
           <span class="levelval" id="level-unique-val">+10</span>
         </div>
       </div>
     </div>
     <div class="panel">
-      <h2>軽減/弱点%(想定防御) — モーション別ダメージ計算用</h2>
+      <h2 data-i18n="panel_negation">軽減/弱点%(想定防御) — モーション別ダメージ計算用</h2>
       <div class="statrow">
         <div class="field" style="flex:1;min-width:220px;">
-          <label class="neg-label">NPCから自動入力</label>
-          <select id="npc-select"><option value="">(手動入力)</option></select>
+          <label class="neg-label" data-i18n="npc_autofill">NPCから自動入力</label>
+          <select id="npc-select"><option value="" data-i18n="npc_manual">(手動入力)</option></select>
         </div>
       </div>
       <div class="statrow">
-        <div class="field"><label class="neg-label">標準</label><input type="number" id="neg-standard" min="-100" max="300" value="0"></div>
-        <div class="field"><label class="neg-label">斬撃</label><input type="number" id="neg-slash" min="-100" max="300" value="0"></div>
-        <div class="field"><label class="neg-label">刺突</label><input type="number" id="neg-pierce" min="-100" max="300" value="0"></div>
-        <div class="field"><label class="neg-label">打撃</label><input type="number" id="neg-strike" min="-100" max="300" value="0"></div>
-        <div class="field"><label class="neg-label">魔力</label><input type="number" id="neg-magic" min="-100" max="300" value="0"></div>
-        <div class="field"><label class="neg-label">火</label><input type="number" id="neg-fire" min="-100" max="300" value="0"></div>
-        <div class="field"><label class="neg-label">雷</label><input type="number" id="neg-lightning" min="-100" max="300" value="0"></div>
-        <div class="field"><label class="neg-label">聖</label><input type="number" id="neg-holy" min="-100" max="300" value="0"></div>
+        <div class="field"><label class="neg-label" data-i18n="neg_standard">標準</label><input type="number" id="neg-standard" min="-100" max="300" value="0"></div>
+        <div class="field"><label class="neg-label" data-i18n="neg_slash">斬撃</label><input type="number" id="neg-slash" min="-100" max="300" value="0"></div>
+        <div class="field"><label class="neg-label" data-i18n="neg_pierce">刺突</label><input type="number" id="neg-pierce" min="-100" max="300" value="0"></div>
+        <div class="field"><label class="neg-label" data-i18n="neg_strike">打撃</label><input type="number" id="neg-strike" min="-100" max="300" value="0"></div>
+        <div class="field"><label class="neg-label" data-i18n="neg_magic">魔力</label><input type="number" id="neg-magic" min="-100" max="300" value="0"></div>
+        <div class="field"><label class="neg-label" data-i18n="neg_fire">火</label><input type="number" id="neg-fire" min="-100" max="300" value="0"></div>
+        <div class="field"><label class="neg-label" data-i18n="neg_lightning">雷</label><input type="number" id="neg-lightning" min="-100" max="300" value="0"></div>
+        <div class="field"><label class="neg-label" data-i18n="neg_holy">聖</label><input type="number" id="neg-holy" min="-100" max="300" value="0"></div>
       </div>
-      <div class="assump">物理ダメージには武器の攻撃属性(標準/斬撃/刺突/打撃)に対応する数値を適用します。<b>ダメージ = 生ダメージ × (1+数値/100)</b>。<b>マイナスの値で軽減(耐性)</b>、<b>プラスの値で弱点によるダメージ増加</b>を表します。NPCの値はNpcParamの`DamageCutRate`(ダメージ倍率、1.0=軽減なし)から変換しています。</div>
+      <div class="assump" data-i18n-html="assump_negation">物理ダメージには武器の攻撃属性(標準/斬撃/刺突/打撃)に対応する数値を適用します。<b>ダメージ = 生ダメージ × (1+数値/100)</b>。<b>マイナスの値で軽減(耐性)</b>、<b>プラスの値で弱点によるダメージ増加</b>を表します。NPCの値はNpcParamの`DamageCutRate`(ダメージ倍率、1.0=軽減なし)から変換しています。</div>
     </div>
   </div>
 
   <div class="filters">
-    <div class="field"><label>武器種</label><select id="f-type"><option value="all">全武器種</option></select></div>
-    <div class="field"><label>派生</label><select id="f-affinity"><option value="all">全派生</option></select></div>
-    <div class="field"><label>モーション</label><select id="f-motion"></select></div>
-    <span class="chk" style="align-self:flex-end;"><input type="checkbox" id="in-twohand"> 両手持ち</span>
-    <span class="chk" style="align-self:flex-end;"><input type="checkbox" id="in-dlc" checked> DLC武器</span>
-    <span class="chk" style="align-self:flex-end;"><input type="checkbox" id="f-hideempty" checked> 空の属性列を隠す</span>
-    <span class="chk" style="align-self:flex-end;"><input type="checkbox" id="f-totalonly"> 攻撃力合計のみ</span>
+    <div class="field"><label data-i18n="filter_type">武器種</label><select id="f-type"><option value="all" data-i18n="all_types">全武器種</option></select></div>
+    <div class="field"><label data-i18n="filter_affinity">派生</label><select id="f-affinity"><option value="all" data-i18n="all_affinities">全派生</option></select></div>
+    <div class="field"><label data-i18n="filter_motion">モーション</label><select id="f-motion"></select></div>
+    <span class="chk" style="align-self:flex-end;"><input type="checkbox" id="in-twohand"> <span data-i18n="chk_twohand">両手持ち</span></span>
+    <span class="chk" style="align-self:flex-end;"><input type="checkbox" id="in-dlc" checked> <span data-i18n="chk_dlc">DLC武器</span></span>
+    <span class="chk" style="align-self:flex-end;"><input type="checkbox" id="f-hideempty" checked> <span data-i18n="chk_hideempty">空の属性列を隠す</span></span>
+    <span class="chk" style="align-self:flex-end;"><input type="checkbox" id="f-totalonly"> <span data-i18n="chk_totalonly">攻撃力合計のみ</span></span>
   </div>
   <div class="filters">
-    <span class="chk"><input type="checkbox" id="f-dmglevel"> ダメージレベル</span>
-    <span class="chk"><input type="checkbox" id="f-poise"> 強靭削り</span>
-    <span class="chk"><input type="checkbox" id="f-stamina"> スタミナダメージ</span>
-    <span class="chk"><input type="checkbox" id="f-mvbreakdown" checked> モーション値の内訳を表示</span>
-    <span class="chk"><input type="checkbox" id="f-dmgbreakdown" checked> ダメージ内訳を表示</span>
-    <span class="chk"><input type="checkbox" id="f-physlump"> 標準/斬撃/打撃/刺突を「物理」として表記</span>
-    <span class="chk"><input type="checkbox" id="f-thrustcounter"> 刺突カウンター(物理×1.3)</span>
-    <span class="chk"><input type="checkbox" id="f-rocksword"> 岩石剣(物理×1.15・強靭削り×1.10)</span>
+    <span class="chk"><input type="checkbox" id="f-dmglevel"> <span data-i18n="chk_dmglevel">ダメージレベル</span></span>
+    <span class="chk"><input type="checkbox" id="f-poise"> <span data-i18n="chk_poise">強靭削り</span></span>
+    <span class="chk"><input type="checkbox" id="f-stamina"> <span data-i18n="chk_stamina">スタミナダメージ</span></span>
+    <span class="chk"><input type="checkbox" id="f-mvbreakdown" checked> <span data-i18n="chk_mvbreakdown">モーション値の内訳を表示</span></span>
+    <span class="chk"><input type="checkbox" id="f-dmgbreakdown" checked> <span data-i18n="chk_dmgbreakdown">ダメージ内訳を表示</span></span>
+    <span class="chk"><input type="checkbox" id="f-physlump"> <span data-i18n="chk_physlump">標準/斬撃/打撃/刺突を「物理」として表記</span></span>
+    <span class="chk"><input type="checkbox" id="f-thrustcounter"> <span data-i18n="chk_thrustcounter">刺突カウンター(物理×1.3)</span></span>
+    <span class="chk"><input type="checkbox" id="f-rocksword"> <span data-i18n="chk_rocksword">岩石剣(物理×1.15・強靭削り×1.10)</span></span>
     <span class="count" id="count-label"></span>
   </div>
 
@@ -216,40 +225,110 @@
   const NPCS = BUNDLE.npcs || []; // [{cls,name_en,name_jp,def_std,def_slash,def_blow,def_thrust,def_mag,def_fire,def_thunder,def_dark}]
 
   const DAMAGE_ORDER = [0,1,2,3,4];
-  const DAMAGE_LABELS = {0:'物理',1:'魔力',2:'火',3:'雷',4:'聖'};
+  const DAMAGE_LABELS_JA = {0:'物理',1:'魔力',2:'火',3:'雷',4:'聖'};
+  const DAMAGE_LABELS_EN = {0:'Phys',1:'Magic',2:'Fire',3:'Lightning',4:'Holy'};
   const DAMAGE_COL_CLASS = {1:'dt-magic', 2:'dt-fire', 3:'dt-lightning', 4:'dt-holy'};
   // affinity ids: 4=Fire,5=Flame Art,6=Lightning,7=Sacred,8=Magic
   const AFF_COL_CLASS = {4:'aff-fire', 5:'aff-fire', 6:'aff-lightning', 7:'aff-holy', 8:'aff-magic'};
+  const AFFEN = {'-1':'Unique','0':'Standard','1':'Heavy','2':'Keen','3':'Quality','4':'Fire','5':'Flame Art',
+                 '6':'Lightning','7':'Sacred','8':'Magic','9':'Cold','10':'Poison','11':'Blood','12':'Occult'};
+  const PTEN = {Standard:'Standard', Slash:'Slash', Strike:'Strike', Pierce:'Pierce'};
+  const NPC_CLASS_EN = {'追憶ボス相当':'Remembrance Boss','大ボス':'Major Boss','フィールドボス相当':'Field Boss',
+                         '洞窟ボス':'Cave Boss','墓ボス':'Catacomb Boss','敵対ネームドNPC':'Hostile Named NPC'};
+
+  const I18N = {
+    ja: {
+      title:'ELDEN RING 武器比較ツール',
+      subtitle:'ステータス・強化値から全武器のAR(攻撃力)を計算し、選択した攻撃モーションのダメージ・消費スタミナを比較します。',
+      feedback_pre:'不具合・要望はこちらの動画のコメント欄まで:',
+      feedback_link:'YouTube動画',
+      panel_stats:'ステータス / 強化値',
+      stat_str:'筋力', stat_dex:'技量', stat_int:'知力', stat_fai:'信仰', stat_arc:'神秘',
+      level_main:'強化値', level_unique:'強化値(派生なし武器・上限+10)',
+      panel_negation:'軽減/弱点%(想定防御) — モーション別ダメージ計算用',
+      npc_autofill:'NPCから自動入力', npc_manual:'(手動入力)',
+      neg_standard:'標準', neg_slash:'斬撃', neg_pierce:'刺突', neg_strike:'打撃',
+      neg_magic:'魔力', neg_fire:'火', neg_lightning:'雷', neg_holy:'聖',
+      assump_negation:'物理ダメージには武器の攻撃属性(標準/斬撃/刺突/打撃)に対応する数値を適用します。<b>ダメージ = 生ダメージ × (1+数値/100)</b>。<b>マイナスの値で軽減(耐性)</b>、<b>プラスの値で弱点によるダメージ増加</b>を表します。NPCの値はNpcParamの`DamageCutRate`(ダメージ倍率、1.0=軽減なし)から変換しています。',
+      filter_type:'武器種', filter_affinity:'派生', filter_motion:'モーション',
+      all_types:'全武器種', all_affinities:'全派生',
+      chk_twohand:'両手持ち', chk_dlc:'DLC武器', chk_hideempty:'空の属性列を隠す', chk_totalonly:'攻撃力合計のみ',
+      chk_dmglevel:'ダメージレベル', chk_poise:'強靭削り', chk_stamina:'スタミナダメージ',
+      chk_mvbreakdown:'モーション値の内訳を表示', chk_dmgbreakdown:'ダメージ内訳を表示',
+      chk_physlump:'標準/斬撃/打撃/刺突を「物理」として表記',
+      chk_thrustcounter:'刺突カウンター(物理×1.3)', chk_rocksword:'岩石剣(物理×1.15・強靭削り×1.10)',
+      col_name:'武器', col_type:'種別', col_affinity:'派生', col_total:'攻撃力合計',
+      col_mv:'モーション値%', col_stam:'消費スタミナ', col_dmgLevel:'ダメージレベル',
+      col_poiseDmg:'強靭削り値', col_staminaDmg:'スタミナダメージ', col_dmg:'ダメージ(軽減後)',
+      empty_msg:'条件に一致する武器がありません。',
+      truncate_note:(total, max)=>`${total.toLocaleString('en-US')} 件中 ${max} 件を表示中。武器種・派生で絞り込んでください。`,
+      count_suffix:' 件', std_somber:'標準+喪色',
+      lang_button:'English',
+    },
+    en: {
+      title:'ELDEN RING Weapon Comparison Tool',
+      subtitle:'Calculates Attack Rating for every weapon from your stats and upgrade level, and compares damage / stamina cost for the selected attack motion.',
+      feedback_pre:'Bugs and requests: please comment on this video:',
+      feedback_link:'YouTube video',
+      panel_stats:'Stats / Upgrade Level',
+      stat_str:'STR', stat_dex:'DEX', stat_int:'INT', stat_fai:'FAI', stat_arc:'ARC',
+      level_main:'Upgrade Level', level_unique:'Upgrade Level (Unique weapons, max +10)',
+      panel_negation:'Negation / Weakness % (assumed defense) — for motion damage calc',
+      npc_autofill:'Auto-fill from NPC', npc_manual:'(manual input)',
+      neg_standard:'Standard', neg_slash:'Slash', neg_pierce:'Pierce', neg_strike:'Strike',
+      neg_magic:'Magic', neg_fire:'Fire', neg_lightning:'Lightning', neg_holy:'Holy',
+      assump_negation:'For physical damage, the value matching the weapon\'s attack attribute (Standard/Slash/Pierce/Strike) is applied. <b>Damage = raw damage × (1 + value/100)</b>. <b>Negative = mitigation (resistance)</b>, <b>positive = bonus damage from a weakness</b>. NPC values are converted from NpcParam\'s `DamageCutRate` (damage multiplier, 1.0 = no mitigation).',
+      filter_type:'Weapon Type', filter_affinity:'Affinity', filter_motion:'Motion',
+      all_types:'All Types', all_affinities:'All Affinities',
+      chk_twohand:'Two-Handed', chk_dlc:'DLC Weapons', chk_hideempty:'Hide empty attribute columns', chk_totalonly:'Total attack power only',
+      chk_dmglevel:'Damage Level', chk_poise:'Poise Damage', chk_stamina:'Stamina Damage',
+      chk_mvbreakdown:'Show motion value breakdown', chk_dmgbreakdown:'Show damage breakdown',
+      chk_physlump:'Show Standard/Slash/Strike/Pierce as "Physical"',
+      chk_thrustcounter:'Thrust Counter (Phys ×1.3)', chk_rocksword:'Rock Sword AoW (Phys ×1.15, Poise Dmg ×1.10)',
+      col_name:'Weapon', col_type:'Type', col_affinity:'Affinity', col_total:'Total AR',
+      col_mv:'Motion Value%', col_stam:'Stamina Cost', col_dmgLevel:'Damage Level',
+      col_poiseDmg:'Poise Damage', col_staminaDmg:'Stamina Damage', col_dmg:'Damage (mitigated)',
+      empty_msg:'No weapons match the current filters.',
+      truncate_note:(total, max)=>`Showing ${max} of ${total.toLocaleString('en-US')} items. Narrow down by weapon type or affinity.`,
+      count_suffix:' items', std_somber:'Standard+Unique',
+      lang_button:'日本語',
+    },
+  };
+  function t(key){ return I18N[state.lang][key]; }
 
   // ---- motion category definitions ----
   const MOTION_CATS = [
-    {key:'weak1', label:'弱攻撃1', re:h=>new RegExp(`^${h} R1 1$`)},
-    {key:'weakTotal', label:'弱攻撃合計', re:h=>new RegExp(`^${h} R1 \\d+$`), total:true},
-    {key:'heavy1', label:'強攻撃1', re:h=>new RegExp(`^${h} R2 1$`)},
-    {key:'heavyTotal', label:'強攻撃合計', re:h=>new RegExp(`^${h} R2 \\d+$`), total:true},
-    {key:'charged1', label:'溜め攻撃1', re:h=>new RegExp(`^${h} Charged R2 1$`)},
-    {key:'chargedTotal', label:'溜め攻撃合計', re:h=>new RegExp(`^${h} Charged R2 \\d+$`), total:true},
-    {key:'jump', label:'ジャンプ攻撃', re:h=>new RegExp(`^${h} Jumping R1$`)},
-    {key:'jumpHeavy', label:'ジャンプ強攻撃', re:h=>new RegExp(`^${h} Jumping R2$`)},
-    {key:'rolling', label:'ローリング攻撃', re:h=>new RegExp(`^${h} Running R1$`)},
-    {key:'rollingHeavy', label:'ローリング強攻撃', re:h=>new RegExp(`^${h} Running R2$`)},
-    {key:'backstep', label:'バックステップ攻撃', re:h=>new RegExp(`^${h} Backstep R1$`)},
-    {key:'guardCounter', label:'ガードカウンター', re:h=>new RegExp(`^${h} Guard Counter$`)},
-    {key:'backstab', label:'バックスタブ', re:()=>/^Backstab$/},
-    {key:'riposte', label:'致命攻撃', re:()=>/^Riposte$/},
-    {key:'mounted', label:'騎乗攻撃', re:()=>/^Mounted R1 1$/},
-    {key:'mountedTotal', label:'騎乗攻撃合計', re:()=>/^Mounted R1 \d+$/, total:true},
-    {key:'mountedHeavy', label:'騎乗強攻撃', re:()=>/^Mounted R2$/},
-    {key:'mountedChargeHook', label:'騎乗溜め攻撃（ひっかけ）', re:()=>/^Mounted R2 Charging$/},
-    {key:'mountedCharge', label:'騎乗溜め攻撃', re:()=>/^Mounted Charged R2$/},
+    {key:'weak1', label:'弱攻撃1', labelEn:'Light Attack 1', re:h=>new RegExp(`^${h} R1 1$`)},
+    {key:'weakTotal', label:'弱攻撃合計', labelEn:'Light Attack Total', re:h=>new RegExp(`^${h} R1 \\d+$`), total:true},
+    {key:'heavy1', label:'強攻撃1', labelEn:'Heavy Attack 1', re:h=>new RegExp(`^${h} R2 1$`)},
+    {key:'heavyTotal', label:'強攻撃合計', labelEn:'Heavy Attack Total', re:h=>new RegExp(`^${h} R2 \\d+$`), total:true},
+    {key:'charged1', label:'溜め攻撃1', labelEn:'Charged Attack 1', re:h=>new RegExp(`^${h} Charged R2 1$`)},
+    {key:'chargedTotal', label:'溜め攻撃合計', labelEn:'Charged Attack Total', re:h=>new RegExp(`^${h} Charged R2 \\d+$`), total:true},
+    {key:'jump', label:'ジャンプ攻撃', labelEn:'Jump Attack', re:h=>new RegExp(`^${h} Jumping R1$`)},
+    {key:'jumpHeavy', label:'ジャンプ強攻撃', labelEn:'Jump Heavy Attack', re:h=>new RegExp(`^${h} Jumping R2$`)},
+    {key:'rolling', label:'ローリング攻撃', labelEn:'Running Attack', re:h=>new RegExp(`^${h} Running R1$`)},
+    {key:'rollingHeavy', label:'ローリング強攻撃', labelEn:'Running Heavy Attack', re:h=>new RegExp(`^${h} Running R2$`)},
+    {key:'backstep', label:'バックステップ攻撃', labelEn:'Backstep Attack', re:h=>new RegExp(`^${h} Backstep R1$`)},
+    {key:'guardCounter', label:'ガードカウンター', labelEn:'Guard Counter', re:h=>new RegExp(`^${h} Guard Counter$`)},
+    {key:'backstab', label:'バックスタブ', labelEn:'Backstab', re:()=>/^Backstab$/},
+    {key:'riposte', label:'致命攻撃', labelEn:'Riposte', re:()=>/^Riposte$/},
+    {key:'mounted', label:'騎乗攻撃', labelEn:'Mounted Attack', re:()=>/^Mounted R1 1$/},
+    {key:'mountedTotal', label:'騎乗攻撃合計', labelEn:'Mounted Attack Total', re:()=>/^Mounted R1 \d+$/, total:true},
+    {key:'mountedHeavy', label:'騎乗強攻撃', labelEn:'Mounted Heavy Attack', re:()=>/^Mounted R2$/},
+    {key:'mountedChargeHook', label:'騎乗溜め攻撃（ひっかけ）', labelEn:'Mounted Charged Attack (Hook)', re:()=>/^Mounted R2 Charging$/},
+    {key:'mountedCharge', label:'騎乗溜め攻撃', labelEn:'Mounted Charged Attack', re:()=>/^Mounted Charged R2$/},
   ];
   const motionSel = document.getElementById('f-motion');
-  MOTION_CATS.forEach(c=>{
-    const opt = document.createElement('option');
-    opt.value = c.key; opt.textContent = c.label;
-    motionSel.appendChild(opt);
-  });
-  motionSel.value = 'weak1';
+  function populateMotionSelect(){
+    const prev = motionSel.value;
+    motionSel.innerHTML = '';
+    MOTION_CATS.forEach(c=>{
+      const opt = document.createElement('option');
+      opt.value = c.key; opt.textContent = state.lang==='ja' ? c.label : c.labelEn;
+      motionSel.appendChild(opt);
+    });
+    motionSel.value = prev || 'weak1';
+  }
 
   function adjustForTwoHanding(weapon, stats, twoHanding){
     let bonus = twoHanding;
@@ -316,47 +395,71 @@
 
   // ---- filter dropdowns ----
   const typeSel = document.getElementById('f-type');
-  const typesPresent = {};
-  REG.weapons.forEach(w => { typesPresent[w.t] = WTJP[String(w.t)] || WTMAP[String(w.t)] || ('type'+w.t); });
-  const presentIds = Object.keys(typesPresent).map(Number);
-  const orderedIds = TYPE_ORDER.filter(id => presentIds.includes(id));
-  const remainingIds = presentIds.filter(id => !TYPE_ORDER.includes(id)).sort((a,b)=>a-b);
-  orderedIds.concat(remainingIds).forEach(id=>{
-    const opt = document.createElement('option');
-    opt.value = id; opt.textContent = typesPresent[id];
-    typeSel.appendChild(opt);
-  });
+  const typesPresentIds = Array.from(new Set(REG.weapons.map(w=>w.t)));
+  function populateTypeSelect(){
+    const prev = typeSel.value;
+    typeSel.innerHTML = '';
+    const optAll = document.createElement('option');
+    optAll.value = 'all'; optAll.textContent = t('all_types');
+    typeSel.appendChild(optAll);
+    const orderedIds = TYPE_ORDER.filter(id => typesPresentIds.includes(id));
+    const remainingIds = typesPresentIds.filter(id => !TYPE_ORDER.includes(id)).sort((a,b)=>a-b);
+    orderedIds.concat(remainingIds).forEach(id=>{
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = state.lang==='ja' ? (WTJP[String(id)] || WTMAP[String(id)] || ('type'+id)) : (WTMAP[String(id)] || ('type'+id));
+      typeSel.appendChild(opt);
+    });
+    typeSel.value = prev || 'all';
+  }
 
   const affSel = document.getElementById('f-affinity');
-  const optCombined = document.createElement('option');
-  optCombined.value = 'std_somber';
-  optCombined.textContent = '標準+喪色';
-  affSel.appendChild(optCombined);
-  const affIdsPresent = new Set(REG.weapons.map(w=>w.a));
-  Array.from(affIdsPresent).sort((a,b)=>a-b).forEach(id=>{
-    const opt = document.createElement('option');
-    opt.value = id; opt.textContent = AFFJP[String(id)] || ('affinity'+id);
-    affSel.appendChild(opt);
-  });
+  const affIdsPresent = Array.from(new Set(REG.weapons.map(w=>w.a))).sort((a,b)=>a-b);
+  function populateAffinitySelect(){
+    const prev = affSel.value;
+    affSel.innerHTML = '';
+    const optAll = document.createElement('option');
+    optAll.value = 'all'; optAll.textContent = t('all_affinities');
+    affSel.appendChild(optAll);
+    const optCombined = document.createElement('option');
+    optCombined.value = 'std_somber';
+    optCombined.textContent = t('std_somber');
+    affSel.appendChild(optCombined);
+    affIdsPresent.forEach(id=>{
+      const opt = document.createElement('option');
+      opt.value = id;
+      opt.textContent = state.lang==='ja' ? (AFFJP[String(id)] || ('affinity'+id)) : (AFFEN[String(id)] || ('affinity'+id));
+      affSel.appendChild(opt);
+    });
+    affSel.value = prev || 'all';
+  }
 
   // ---- NPC defense dropdown ----
   const NPC_CLASS_ORDER = ['追憶ボス相当','大ボス','フィールドボス相当','洞窟ボス','墓ボス','敵対ネームドNPC'];
   const npcSel = document.getElementById('npc-select');
   const npcByGroup = {};
   NPCS.forEach((n, idx) => { (npcByGroup[n.cls] = npcByGroup[n.cls] || []).push(idx); });
-  NPC_CLASS_ORDER.concat(Object.keys(npcByGroup).filter(c=>!NPC_CLASS_ORDER.includes(c))).forEach(cls=>{
-    const idxs = npcByGroup[cls];
-    if (!idxs || !idxs.length) return;
-    const group = document.createElement('optgroup');
-    group.label = cls;
-    idxs.forEach(idx=>{
-      const opt = document.createElement('option');
-      opt.value = idx;
-      opt.textContent = NPCS[idx].name_jp || NPCS[idx].name_en;
-      group.appendChild(opt);
+  function populateNpcSelect(){
+    const prev = npcSel.value;
+    npcSel.innerHTML = '';
+    const optNone = document.createElement('option');
+    optNone.value = ''; optNone.textContent = t('npc_manual');
+    npcSel.appendChild(optNone);
+    NPC_CLASS_ORDER.concat(Object.keys(npcByGroup).filter(c=>!NPC_CLASS_ORDER.includes(c))).forEach(cls=>{
+      const idxs = npcByGroup[cls];
+      if (!idxs || !idxs.length) return;
+      const group = document.createElement('optgroup');
+      group.label = state.lang==='ja' ? cls : (NPC_CLASS_EN[cls] || cls);
+      idxs.forEach(idx=>{
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.textContent = state.lang==='ja' ? (NPCS[idx].name_jp || NPCS[idx].name_en) : NPCS[idx].name_en;
+        group.appendChild(opt);
+      });
+      npcSel.appendChild(group);
     });
-    npcSel.appendChild(group);
-  });
+    npcSel.value = prev || '';
+  }
   npcSel.addEventListener('change', ()=>{
     if (npcSel.value === '') return;
     const n = NPCS[+npcSel.value];
@@ -373,6 +476,7 @@
 
   // ---- state ----
   const state = {
+    lang: 'ja',
     stats: {str:10, dex:10, int:10, fai:10, arc:10},
     level: 25, levelUnique: 10, twoHanding:false, includeDLC:true,
     negation: {standard:0, slash:0, pierce:0, strike:0, magic:0, fire:0, lightning:0, holy:0},
@@ -452,22 +556,38 @@
   }
 
   const COLS = [
-    {key:'name', label:'武器'},
-    {key:'type', label:'種別'},
-    {key:'affinity', label:'派生'},
-    {key:'total', label:'攻撃力合計', num:true},
-    {key:'dt0', label:'物理', num:true, dt:0},
-    {key:'dt1', label:'魔力', num:true, dt:1},
-    {key:'dt2', label:'火', num:true, dt:2},
-    {key:'dt3', label:'雷', num:true, dt:3},
-    {key:'dt4', label:'聖', num:true, dt:4},
-    {key:'mv', label:'モーション値%', num:true, motion:true},
-    {key:'stam', label:'消費スタミナ', num:true, motion:true},
-    {key:'dmgLevel', label:'ダメージレベル', num:true, motion:true, extraKey:'showDmgLevel'},
-    {key:'poiseDmg', label:'強靭削り値', num:true, motion:true, extraKey:'showPoise'},
-    {key:'staminaDmg', label:'スタミナダメージ', num:true, motion:true, extraKey:'showStamina'},
-    {key:'dmg', label:'ダメージ(軽減後)', num:true, motion:true},
+    {key:'name', ik:'col_name'},
+    {key:'type', ik:'col_type'},
+    {key:'affinity', ik:'col_affinity'},
+    {key:'total', ik:'col_total', num:true},
+    {key:'dt0', num:true, dt:0},
+    {key:'dt1', num:true, dt:1},
+    {key:'dt2', num:true, dt:2},
+    {key:'dt3', num:true, dt:3},
+    {key:'dt4', num:true, dt:4},
+    {key:'mv', ik:'col_mv', num:true, motion:true},
+    {key:'stam', ik:'col_stam', num:true, motion:true},
+    {key:'dmgLevel', ik:'col_dmgLevel', num:true, motion:true, extraKey:'showDmgLevel'},
+    {key:'poiseDmg', ik:'col_poiseDmg', num:true, motion:true, extraKey:'showPoise'},
+    {key:'staminaDmg', ik:'col_staminaDmg', num:true, motion:true, extraKey:'showStamina'},
+    {key:'dmg', ik:'col_dmg', num:true, motion:true},
   ];
+  function colLabel(c){
+    if (c.dt!==undefined) return state.lang==='ja' ? DAMAGE_LABELS_JA[c.dt] : DAMAGE_LABELS_EN[c.dt];
+    return t(c.ik);
+  }
+  function wtLabel(tid){
+    return state.lang==='ja' ? (WTJP[String(tid)]||'') : (WTMAP[String(tid)]||'');
+  }
+  function affLabel(aid){
+    return state.lang==='ja' ? (AFFJP[String(aid)]||'') : (AFFEN[String(aid)]||'');
+  }
+  function ptLabel(pt){
+    return state.lang==='ja' ? (PTJP[pt]||pt) : (PTEN[pt]||pt);
+  }
+  function dmgLabel(dt){
+    return state.lang==='ja' ? DAMAGE_LABELS_JA[dt] : DAMAGE_LABELS_EN[dt];
+  }
 
   function getMotionRows(weapon){
     // prefer the weapon's own motion/stamina data; fall back to the class-level
@@ -535,7 +655,7 @@
           if (w.a !== 0 && w.a !== -1) continue;
         } else if (String(w.a) !== state.affinityFilter) continue;
       }
-      const dispName = w.jn || w.n;
+      const dispName = state.lang==='ja' ? (w.jn || w.n) : w.n;
       const ar = getWeaponAttack(w, state.stats, state.level, state.levelUnique, state.twoHanding);
       const meetsReq = weaponMeetsRequirements(w, state.stats, state.twoHanding);
       let total = 0;
@@ -590,8 +710,8 @@
     rows.sort((a,b)=>{
       let av, bv;
       if (col==='name'){ return dir*a.dispName.localeCompare(b.dispName, 'ja'); }
-      if (col==='type'){ av=WTJP[String(a.w.t)]||''; bv=WTJP[String(b.w.t)]||''; return dir*av.localeCompare(bv,'ja'); }
-      if (col==='affinity'){ av=AFFJP[String(a.w.a)]||''; bv=AFFJP[String(b.w.a)]||''; return dir*av.localeCompare(bv,'ja'); }
+      if (col==='type'){ av=wtLabel(a.w.t); bv=wtLabel(b.w.t); return dir*av.localeCompare(bv,'ja'); }
+      if (col==='affinity'){ av=affLabel(a.w.a); bv=affLabel(b.w.a); return dir*av.localeCompare(bv,'ja'); }
       if (col==='total'){ return dir*(a.total-b.total); }
       if (col==='mv'){ return dir*((a.mv||0)-(b.mv||0)); }
       if (col==='stam'){ return dir*((a.stam||0)-(b.stam||0)); }
@@ -618,7 +738,7 @@
     let rows = buildRows();
     sortRows(rows);
 
-    document.getElementById('count-label').textContent = rows.length.toLocaleString('en-US') + ' 件';
+    document.getElementById('count-label').textContent = rows.length.toLocaleString('en-US') + t('count_suffix');
 
     const visibleCols = COLS.filter(c => {
       if (c.extraKey && !state[c.extraKey]) return false;
@@ -633,7 +753,7 @@
     theadRow.innerHTML = '';
     visibleCols.forEach(c=>{
       const th = document.createElement('th');
-      th.textContent = c.label + (state.sortCol===c.key ? (state.sortDir===1?' ▲':' ▼') : '');
+      th.textContent = colLabel(c) + (state.sortCol===c.key ? (state.sortDir===1?' ▲':' ▼') : '');
       if (c.num) th.classList.add('num');
       if (c.motion) th.classList.add('motioncol');
       th.addEventListener('click', ()=>{
@@ -652,7 +772,7 @@
       const td = document.createElement('td');
       td.colSpan = visibleCols.length;
       td.className='empty-msg';
-      td.textContent = '条件に一致する武器がありません。';
+      td.textContent = t('empty_msg');
       tr.appendChild(td);
       tbody.appendChild(tr);
       document.getElementById('truncate-note').style.display='none';
@@ -672,11 +792,11 @@
       visibleCols.forEach(c=>{
         const td = document.createElement('td');
         if (c.key==='name'){ td.className = r.meetsReq ? 'name' : 'name-unmet'; td.textContent=r.dispName; }
-        else if (c.key==='type'){ td.className='dim'; td.textContent=WTJP[String(r.w.t)]||''; }
+        else if (c.key==='type'){ td.className='dim'; td.textContent=wtLabel(r.w.t); }
         else if (c.key==='affinity'){
           const span = document.createElement('span');
           span.className='aff-tag' + (AFF_COL_CLASS[r.w.a] ? (' '+AFF_COL_CLASS[r.w.a]) : '');
-          span.textContent = AFFJP[String(r.w.a)]||'';
+          span.textContent = affLabel(r.w.a);
           td.appendChild(span);
         }
         else if (c.key==='total'){ td.className='num total'; td.textContent=fmt(r.total); }
@@ -715,15 +835,15 @@
             if (r.dmgByType.phys){
               if (state.physLump){
                 const sum = Object.values(r.dmgByType.phys).reduce((a,b)=>a+b,0);
-                if (sum) parts.push(`物理${fmt(sum)}`);
+                if (sum) parts.push(`${dmgLabel(0)}${fmt(sum)}`);
               } else {
                 PT_ORDER.filter(pt => r.dmgByType.phys[pt]).forEach(pt=>{
-                  parts.push(`${PTJP[pt]||pt}${fmt(r.dmgByType.phys[pt])}`);
+                  parts.push(`${ptLabel(pt)}${fmt(r.dmgByType.phys[pt])}`);
                 });
               }
             }
             [1,2,3,4].filter(dt => r.dmgByType[dt]).forEach(dt=>{
-              parts.push(`${DAMAGE_LABELS[dt]}${fmt(r.dmgByType[dt])}`);
+              parts.push(`${dmgLabel(dt)}${fmt(r.dmgByType[dt])}`);
             });
             if (parts.length){
               const small = document.createElement('span');
@@ -746,7 +866,7 @@
     const note = document.getElementById('truncate-note');
     if (rows.length > MAX_ROWS){
       note.style.display='block';
-      note.textContent = `${rows.length.toLocaleString('en-US')} 件中 ${MAX_ROWS} 件を表示中。検索・武器種・派生で絞り込んでください。`;
+      note.textContent = t('truncate_note')(rows.length, MAX_ROWS);
     } else {
       note.style.display='none';
     }
@@ -776,6 +896,33 @@
   document.getElementById('f-thrustcounter').addEventListener('change', render);
   document.getElementById('f-rocksword').addEventListener('change', render);
 
+  // ---- i18n ----
+  function applyStaticI18n(){
+    document.documentElement.lang = state.lang;
+    document.title = t('title');
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      el.textContent = t(el.getAttribute('data-i18n'));
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      el.innerHTML = t(el.getAttribute('data-i18n-html'));
+    });
+    document.getElementById('lang-toggle').textContent = t('lang_button');
+  }
+  document.getElementById('lang-toggle').addEventListener('click', ()=>{
+    state.lang = state.lang==='ja' ? 'en' : 'ja';
+    applyStaticI18n();
+    populateMotionSelect();
+    populateTypeSelect();
+    populateAffinitySelect();
+    populateNpcSelect();
+    render();
+  });
+
+  applyStaticI18n();
+  populateMotionSelect();
+  populateTypeSelect();
+  populateAffinitySelect();
+  populateNpcSelect();
   render();
 })();
 </script>
